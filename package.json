@@ -1,0 +1,21 @@
+{
+    "name": "animehubb",
+    "version": "1.0.0",
+    "description": "AnimeHub - Full Stack Application",
+    "scripts": {
+        "start": "echo ⚠️  Please open TWO terminals: Terminal 1: 'npm run dev:backend' ^| Terminal 2: 'npm run dev:frontend'",
+        "dev": "echo ⚠️  Please open TWO terminals: Terminal 1: 'npm run dev:backend' ^| Terminal 2: 'npm run dev:frontend'",
+        "dev:backend": "cd backend && npm run dev",
+        "dev:frontend": "cd frontend && npm run dev",
+        "start:backend": "cd backend && npm start",
+        "install:all": "cd backend && npm install && cd ../frontend && npm install"
+    },
+    "keywords": [
+        "anime",
+        "fullstack",
+        "react",
+        "express"
+    ],
+    "author": "",
+    "license": "ISC"
+}
