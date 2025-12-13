@@ -1,2 +1,46 @@
 # AnimeHub
-AnimeHub is a modern web application for exploring anime content through a clean and responsive interface. Built with React, JavaScript, and Express.js, it focuses on scalable architecture, smooth data flow, and an intuitive user experience.
+
+A modern full-stack web application to explore and discover anime content with a clean, responsive, and intuitive interface.
+
+---
+
+## Tech Stack
+- **Frontend:** React, JavaScript  
+- **Backend:** Express.js, Node.js  
+- **Database:** (Add if any, e.g., MongoDB)  
+- **Tools:** Git, GitHub, VS Code  
+
+---
+
+## Features
+- User authentication: Signup & Login  
+- Browse and search anime content  
+- Responsive design for desktop and mobile  
+- Organized frontend and backend architecture  
+- Easily extendable for future features  
+
+---
+
+## Screenshots
+
+**Signup Page**  
+![Signup](screenshots/signup.png)
+
+**Login Page**  
+![Login](screenshots/login.png)
+
+**Homepage**  
+![Homepage](screenshots/homepage.png)
+
+**Anime List / Browse**  
+![Anime List](screenshots/anime-list.png)
+
+> Replace the placeholder images (`signup.png`, `login.png`, etc.) in the `screenshots/` folder with your actual screenshots.
+
+---
+
+## How to Run Locally
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/RUSSELLWICLIFF/AnimeHub.git
