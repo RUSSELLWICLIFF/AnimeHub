@@ -29,7 +29,7 @@ A modern full-stack web application to explore and discover anime content with a
 **Login Page**  
 ![Login](screenshots/login.png)
 
-**Homepage**  
+**Home Page**  
 ![Homepage](screenshots/homepage.png)
 
 **Anime List / Browse**  
