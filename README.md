@@ -57,10 +57,10 @@ It demonstrates complete frontend–backend integration with user authentication
 ![Login](screenshots/login.png)
 
 ### Homepage
-![Homepage](screenshots/homepage.png)
+![Homepage](screenshots/home.png)
 
 ### Anime List
-![Anime List](screenshots/anime-list.png)
+![Anime List](screenshots/animelist.png)
 
 ---
 
@@ -69,5 +69,12 @@ It demonstrates complete frontend–backend integration with user authentication
 ### Backend
 ```bash
 cd backend
+npm install
+npm start
+---
+
+### Frontend
+```bash
+cd frontend
 npm install
 npm start
