@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { login } from "../services/api";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -14,21 +15,15 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const result = await login(email, password);
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (result.success) {
         navigate("/");
       } else {
-        setError(data.message);
+        setError(result.message);
       }
     } catch (err) {
-      setError("Failed to connect to server");
+      setError("An unexpected error occurred");
     } finally {
       setIsLoading(false);
     }

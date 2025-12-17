@@ -1,5 +1,5 @@
-// API client for fetching anime data from backend
-const API_BASE_URL = 'http://localhost:5000/api';
+// API client for fetching anime data from backend using axios
+import axiosInstance from '../config/axios.config';
 
 // Cache for client-side data
 const clientCache = new Map();
@@ -24,13 +24,14 @@ export async function getTrendingAnime(page = 1, limit = 25) {
     if (cached) return cached;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/anime/trending?page=${page}&limit=${limit}`);
-        const result = await response.json();
-        if (result.success) {
-            setCache(cacheKey, result.data);
-            return result.data;
+        const response = await axiosInstance.get('/api/anime/trending', {
+            params: { page, limit }
+        });
+        if (response.data.success) {
+            setCache(cacheKey, response.data.data);
+            return response.data.data;
         }
-        throw new Error(result.error || 'Failed to fetch trending anime');
+        throw new Error(response.data.error || 'Failed to fetch trending anime');
     } catch (error) {
         console.error('Error fetching trending anime:', error);
         return [];
@@ -44,13 +45,14 @@ export async function getPopularAnime(page = 1, limit = 25) {
     if (cached) return cached;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/anime/popular?page=${page}&limit=${limit}`);
-        const result = await response.json();
-        if (result.success) {
-            setCache(cacheKey, result.data);
-            return result.data;
+        const response = await axiosInstance.get('/api/anime/popular', {
+            params: { page, limit }
+        });
+        if (response.data.success) {
+            setCache(cacheKey, response.data.data);
+            return response.data.data;
         }
-        throw new Error(result.error || 'Failed to fetch popular anime');
+        throw new Error(response.data.error || 'Failed to fetch popular anime');
     } catch (error) {
         console.error('Error fetching popular anime:', error);
         return [];
@@ -64,13 +66,12 @@ export async function getAnimeById(id) {
     if (cached) return cached;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/anime/${id}`);
-        const result = await response.json();
-        if (result.success) {
-            setCache(cacheKey, result.data);
-            return result.data;
+        const response = await axiosInstance.get(`/api/anime/${id}`);
+        if (response.data.success) {
+            setCache(cacheKey, response.data.data);
+            return response.data.data;
         }
-        throw new Error(result.error || 'Failed to fetch anime details');
+        throw new Error(response.data.error || 'Failed to fetch anime details');
     } catch (error) {
         console.error(`Error fetching anime ${id}:`, error);
         return null;
@@ -84,13 +85,14 @@ export async function getAnimeReviews(id, limit = 5) {
     if (cached) return cached;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/anime/${id}/reviews?limit=${limit}`);
-        const result = await response.json();
-        if (result.success) {
-            setCache(cacheKey, result.data);
-            return result.data;
+        const response = await axiosInstance.get(`/api/anime/${id}/reviews`, {
+            params: { limit }
+        });
+        if (response.data.success) {
+            setCache(cacheKey, response.data.data);
+            return response.data.data;
         }
-        throw new Error(result.error || 'Failed to fetch reviews');
+        throw new Error(response.data.error || 'Failed to fetch reviews');
     } catch (error) {
         console.error(`Error fetching reviews for anime ${id}:`, error);
         return [];
@@ -106,13 +108,14 @@ export async function searchAnime(query, limit = 10) {
     if (cached) return cached;
 
     try {
-        const response = await fetch(`${API_BASE_URL}/anime/search/query?q=${encodeURIComponent(query)}&limit=${limit}`);
-        const result = await response.json();
-        if (result.success) {
-            setCache(cacheKey, result.data);
-            return result.data;
+        const response = await axiosInstance.get('/api/anime/search/query', {
+            params: { q: query, limit }
+        });
+        if (response.data.success) {
+            setCache(cacheKey, response.data.data);
+            return response.data.data;
         }
-        throw new Error(result.error || 'Failed to search anime');
+        throw new Error(response.data.error || 'Failed to search anime');
     } catch (error) {
         console.error('Error searching anime:', error);
         return [];
