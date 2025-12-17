@@ -53,14 +53,14 @@ It demonstrates complete frontend–backend integration with user authentication
 ### Signup Page
 ![Signup](screenshots/signup.png)
 
-### Login Page
-![Login](screenshots/login.png)
-
-### Homepage
-![Homepage](screenshots/home.png)
+### HomePage
+![Homepage](screenshots/homepage.png)
 
 ### Anime List
 ![Anime List](screenshots/animelist.png)
+
+### Status
+![Status](screenshots/status.png)
 
 ---
 
