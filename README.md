@@ -66,13 +66,6 @@ It demonstrates complete frontend–backend integration with user authentication
 
 ## How to Run the Project
 
-### Backend
-```bash
-cd backend
-npm install
-npm start
----
-
 ### Frontend
 ```bash
 cd frontend
