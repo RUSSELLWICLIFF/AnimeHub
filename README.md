@@ -1,8 +1,8 @@
 # AnimeHub
 
-AnimeHub is a full-stack web application designed to provide a smooth and engaging anime browsing experience. The project emphasizes clean UI design, scalable architecture, and real-world development practices.
+AnimeHub is a full-stack web application that provides an engaging and user-friendly platform for exploring anime content. The project demonstrates real-world frontend and backend integration with a focus on clean UI, scalability, and modern development practices.
 
-It demonstrates complete frontend–backend integration with user authentication, dynamic content rendering, and responsive design.
+It includes user authentication, dynamic anime listings, reviews, and user status updates, all wrapped in a responsive interface.
 
 ---
 
@@ -22,8 +22,7 @@ It demonstrates complete frontend–backend integration with user authentication
 - MongoDB
 
 **Tools**
-- Git
-- GitHub
+- Git & GitHub
 - VS Code
 
 ---
@@ -33,8 +32,10 @@ It demonstrates complete frontend–backend integration with user authentication
 - User authentication (Signup & Login)
 - Secure backend API integration
 - Dynamic anime listing
+- Anime reviews
+- User status updates
 - Responsive and clean UI
-- Modular and scalable architecture
+- Scalable full-stack architecture
 
 ---
 
@@ -53,21 +54,31 @@ It demonstrates complete frontend–backend integration with user authentication
 ### Signup Page
 ![Signup](screenshots/signup.png)
 
-### HomePage
+### Homepage
 ![Homepage](screenshots/homepage.png)
 
 ### Anime List
 ![Anime List](screenshots/animelist.png)
 
-### Status
+### Review Page
+![Review](screenshots/review.png)
+
+### Status Page
 ![Status](screenshots/status.png)
 
 ---
 
 ## How to Run the Project
 
-### Frontend
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm installed
+- MongoDB running locally or via MongoDB Atlas
+
+---
+
+### Backend Setup
 ```bash
-cd frontend
+cd backend
 npm install
 npm start
