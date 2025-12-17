@@ -1,75 +1,94 @@
+const animeImages = {
+    "Attack on Titan": "https://cdn.myanimelist.net/images/anime/10/47347l.jpg",
+    "My Hero Academia": "https://cdn.myanimelist.net/images/anime/10/78745l.jpg",
+    "Demon Slayer": "https://cdn.myanimelist.net/images/anime/1286/99889l.jpg",
+    "Tokyo Ghoul": "https://cdn.myanimelist.net/images/anime/1498/134443l.jpg",
+    "Jujutsu Kaisen": "https://cdn.myanimelist.net/images/anime/1171/109222l.jpg",
+    "One Piece": "https://cdn.myanimelist.net/images/anime/1770/97704l.jpg",
+    "Naruto": "https://cdn.myanimelist.net/images/anime/1141/142503l.jpg",
+    "Naruto Shippuden": "https://cdn.myanimelist.net/images/anime/1565/111305l.jpg",
+    "Fullmetal Alchemist: Brotherhood": "https://cdn.myanimelist.net/images/anime/1208/94745l.jpg",
+    "Death Note": "https://cdn.myanimelist.net/images/anime/1079/138100l.jpg",
+    "Steins;Gate": "https://cdn.myanimelist.net/images/anime/1935/127974l.jpg",
+    "Steins;Gate 0": "https://cdn.myanimelist.net/images/anime/1375/93521l.jpg",
+    "Hunter x Hunter": "https://cdn.myanimelist.net/images/anime/1305/132237l.jpg",
+    "Sword Art Online": "https://cdn.myanimelist.net/images/anime/11/39717l.jpg",
+    "Code Geass": "https://cdn.myanimelist.net/images/anime/1032/135088l.jpg",
+    "Cowboy Bebop": "https://cdn.myanimelist.net/images/anime/4/19644l.jpg",
+    "Mob Psycho 100": "https://cdn.myanimelist.net/images/anime/8/80356l.jpg",
+    "One Punch Man": "https://cdn.myanimelist.net/images/anime/12/76049l.jpg",
+    "Bleach": "https://cdn.myanimelist.net/images/anime/1541/147774l.jpg",
+    "Bleach: Thousand-Year Blood War": "https://cdn.myanimelist.net/images/anime/1908/135431l.jpg",
+    "Dragon Ball Z": "https://cdn.myanimelist.net/images/anime/1277/142022l.jpg",
+    "Dragon Ball Super": "https://cdn.myanimelist.net/images/anime/7/74606l.jpg",
+    "Vinland Saga": "https://cdn.myanimelist.net/images/anime/1500/103005l.jpg",
+    "Re:Zero": "https://cdn.myanimelist.net/images/anime/1040/153636l.jpg",
+    "The Promised Neverland": "https://cdn.myanimelist.net/images/anime/1830/118780l.jpg",
+    "Solo Leveling": "https://cdn.myanimelist.net/images/anime/1801/142390l.jpg",
+    "Frieren: Beyond Journey's End": "https://cdn.myanimelist.net/images/anime/1015/138006l.jpg",
+    "Chainsaw Man": "https://cdn.myanimelist.net/images/anime/1806/126216l.jpg",
+    "Spy x Family": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
+    "Mushoku Tensei": "https://cdn.myanimelist.net/images/anime/1530/117776l.jpg",
+    "Overlord": "https://cdn.myanimelist.net/images/anime/1945/136600l.jpg",
+    "That Time I Got Reincarnated as a Slime": "https://cdn.myanimelist.net/images/anime/1069/123309l.jpg",
+    "Konosuba": "https://cdn.myanimelist.net/images/anime/1895/142748l.jpg",
+    "Violet Evergarden": "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
+    "Your Lie in April": "https://cdn.myanimelist.net/images/anime/1405/143284l.jpg",
+    "Toradora!": "https://cdn.myanimelist.net/images/anime/13/22128l.jpg",
+    "Parasyte": "https://cdn.myanimelist.net/images/anime/3/73178l.jpg",
+    "Anohana": "https://cdn.myanimelist.net/images/anime/5/9880l.jpg",
+    "Clannad": "https://cdn.myanimelist.net/images/anime/13/24647l.jpg",
+    "Clannad: After Story": "https://cdn.myanimelist.net/images/anime/13/24647l.jpg",
+    "Kaguya-sama: Love is War": "https://cdn.myanimelist.net/images/anime/1295/106551l.jpg",
+    "Horimiya": "https://cdn.myanimelist.net/images/anime/1695/111486l.jpg",
+    "Fruits Basket": "https://cdn.myanimelist.net/images/anime/4/75204l.jpg",
+    "Erased": "https://cdn.myanimelist.net/images/anime/1122/96923l.jpg",
+    "Made in Abyss": "https://cdn.myanimelist.net/images/anime/6/86733l.jpg",
+    "Dr. Stone": "https://cdn.myanimelist.net/images/anime/1613/102576l.jpg",
+    "The Rising of the Shield Hero": "https://cdn.myanimelist.net/images/anime/1068/97304l.jpg",
+    "Assassination Classroom": "https://cdn.myanimelist.net/images/anime/5/75639l.jpg",
+    "Noragami": "https://cdn.myanimelist.net/images/anime/9/77809l.jpg",
+    "Blue Exorcist": "https://cdn.myanimelist.net/images/anime/10/31201l.jpg",
+    "Black Clover": "https://cdn.myanimelist.net/images/anime/2/88336l.jpg",
+    "Fire Force": "https://cdn.myanimelist.net/images/anime/15/102983l.jpg",
+    "Dororo": "https://cdn.myanimelist.net/images/anime/1933/97061l.jpg",
+    "Beastars": "https://cdn.myanimelist.net/images/anime/1655/103254l.jpg"
+};
+
 // Helper function to get thumbnail with anime-specific colors
 const getThumbnail = (title, season) => {
-    // Color schemes for different anime series (hex colors without #)
-    const colorSchemes = {
-        "Attack on Titan": ["8B0000", "A52A2A", "DC143C", "8B0000"],
-        "My Hero Academia": ["228B22", "32CD32", "00FF00", "9ACD32", "6B8E23", "556B2F", "8FBC8F"],
-        "Demon Slayer": ["4B0082", "8B008B", "9370DB", "BA55D3"],
-        "Tokyo Ghoul": ["2F4F4F", "696969", "708090", "778899"],
-        "Jujutsu Kaisen": ["483D8B", "6A5ACD"],
-        "One Piece": ["1E90FF", "4169E1", "0000CD", "00008B", "191970", "000080"],
-        "Naruto": ["FF8C00"],
-        "Naruto Shippuden": ["FF4500"],
-        "Fullmetal Alchemist: Brotherhood": ["B8860B"],
-        "Death Note": ["000000"],
-        "Steins;Gate": ["8B4513"],
-        "Steins;Gate 0": ["A0522D"],
-        "Hunter x Hunter": ["228B22"],
-        "Sword Art Online": ["4682B4", "5F9EA0", "6495ED", "87CEEB"],
-        "Code Geass": ["800080", "9932CC"],
-        "Cowboy Bebop": ["2F4F4F"],
-        "Mob Psycho 100": ["FF1493", "FF69B4", "FFB6C1"],
-        "One Punch Man": ["FFD700", "FFA500"],
-        "Bleach": ["FF4500"],
-        "Bleach: Thousand-Year Blood War": ["DC143C"],
-        "Dragon Ball Z": ["FF8C00"],
-        "Dragon Ball Super": ["1E90FF"],
-        "Vinland Saga": ["8B4513", "A0522D"],
-        "Re:Zero": ["4B0082", "8B008B"],
-        "The Promised Neverland": ["FF6347", "FF7F50"],
-        "Haikyuu!!": ["FF8C00", "FFA500", "FFD700", "FFFF00"],
-        "Spy x Family": ["DC143C", "FF1493"],
-        "Chainsaw Man": ["8B0000"],
-        "Frieren: Beyond Journey's End": ["4682B4"],
-        "Mushoku Tensei": ["4169E1", "1E90FF"],
-        "Overlord": ["2F4F4F", "696969", "708090", "778899"],
-        "That Time I Got Reincarnated as a Slime": ["00CED1", "40E0D0", "48D1CC"],
-        "Konosuba": ["9370DB", "BA55D3", "DA70D6"],
-        "Violet Evergarden": ["9370DB"],
-        "Your Lie in April": ["FFB6C1"],
-        "Anohana": ["87CEEB"],
-        "Clannad": ["FFB6C1"],
-        "Clannad: After Story": ["FFC0CB"],
-        "Toradora!": ["FF69B4"],
-        "Kaguya-sama: Love is War": ["FF1493", "FF69B4", "FFB6C1"],
-        "Horimiya": ["FFA07A"],
-        "Fruits Basket": ["FFB6C1", "FFC0CB", "FFE4E1"],
-        "Parasyte": ["2F4F4F"],
-        "Erased": ["4682B4"],
-        "Made in Abyss": ["483D8B", "6A5ACD"],
-        "Dr. Stone": ["32CD32", "00FF00", "7FFF00"],
-        "The Rising of the Shield Hero": ["228B22", "32CD32", "00FF00"],
-        "Assassination Classroom": ["FFD700", "FFA500"],
-        "Noragami": ["4169E1", "1E90FF"],
-        "Blue Exorcist": ["0000CD", "00008B"],
-        "Black Clover": ["2F4F4F"],
-        "Fire Force": ["FF4500", "FF6347"],
-        "Dororo": ["8B4513"],
-        "Beastars": ["696969", "808080"],
-    };
+    // Generate filename from title (lowercase, replace non-alphanumeric with underscore)
+    const filename = title.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.jpg';
 
-    const colors = colorSchemes[title];
-    if (colors && season) {
-        const colorIndex = Math.min(season - 1, colors.length - 1);
-        const bgColor = colors[colorIndex];
-        const textColor = "FFFFFF";
-        const encodedTitle = encodeURIComponent(title + " S" + season);
-        return `https://placehold.co/400x600/${bgColor}/${textColor}/png?text=${encodedTitle}`;
+    // List of anime with local images
+    const localImages = [
+        "attack_on_titan",
+        "my_hero_academia",
+        "demon_slayer",
+        "tokyo_ghoul",
+        "jujutsu_kaisen",
+        "one_piece",
+        "naruto",
+        "naruto_shippuden",
+        "fullmetal_alchemist_brotherhood",
+        "death_note",
+        "steins_gate",
+        "steins_gate_0",
+        "hunter_x_hunter",
+        "sword_art_online",
+        "code_geass"
+    ];
+
+    const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
+    // Check if we have a local image for this anime
+    if (localImages.includes(normalizedTitle)) {
+        return `/images/anime-posters/${filename}`;
     }
-    // Fallback for anime not in the color scheme list
-    const defaultColor = "1a1a3e";
-    const encodedFallback = encodeURIComponent(title + (season ? " S" + season : ""));
-    return `https://placehold.co/400x600/${defaultColor}/FFFFFF/png?text=${encodedFallback}`;
+
+    // Fallback to placeholder for missing ones
+    const encodedTitle = encodeURIComponent(title + (season ? " S" + season : ""));
+    return `https://placehold.co/400x600/1a1a3e/FFFFFF/png?text=${encodedTitle}`;
 };
 
 // Comprehensive anime database with 100+ entries
@@ -96,81 +115,81 @@ export const animeData = [
     { id: 15, title: "Demon Slayer", season: 4, rating: "9.0", image: "⚔️", thumbnail: getThumbnail("Demon Slayer", 4), genre: "Action, Supernatural", description: "The Hashira Training Arc prepares the Demon Slayer Corps for the final battle against Muzan Kibutsuji and the Upper Rank demons. Tanjiro undergoes rigorous training with each of the Hashira, learning their unique techniques and philosophies. The season builds tension as the demons make their move, leading to the inevitable confrontation that will decide humanity's fate. Character development deepens as past traumas are confronted and bonds between demon slayers strengthen for the ultimate showdown.", episodes: 8, year: 2024, studio: "ufotable", status: "Completed" },
 
     // Tokyo Ghoul Series
-    { id: 16, title: "Tokyo Ghoul", season: 1, rating: "8.4", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 1), genre: "Dark Fantasy, Horror", description: "A college student becomes a half-ghoul after a deadly encounter.", episodes: 12 },
-    { id: 17, title: "Tokyo Ghoul", season: 2, rating: "8.6", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 2), genre: "Dark Fantasy, Horror", description: "Kaneki struggles with his identity as tensions rise between ghouls and humans.", episodes: 12 },
-    { id: 18, title: "Tokyo Ghoul", season: 3, rating: "8.0", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 3), genre: "Dark Fantasy, Horror", description: "A new investigator joins the CCG to hunt down ghouls.", episodes: 12 },
-    { id: 19, title: "Tokyo Ghoul", season: 4, rating: "8.5", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 4), genre: "Dark Fantasy, Horror", description: "The final season brings the conflict to its climax.", episodes: 12 },
+    { id: 16, title: "Tokyo Ghoul", season: 1, rating: "8.4", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 1), genre: "Dark Fantasy, Horror", description: "College student Ken Kaneki's life changes forever when a date with a mysterious girl turns into a nightmare - she's a ghoul, a flesh-eating monster hiding among humans. After a near-fatal encounter, Kaneki wakes up as a half-ghoul, caught between two worlds. He must learn to survive in ghoul society while hiding his new nature from his human friends. This dark, psychological horror explores identity, morality, and what it means to be human as Kaneki struggles with his monstrous hunger and the violent conflict between ghouls and the CCG investigators who hunt them.", episodes: 12, year: 2014, studio: "Studio Pierrot", status: "Completed" },
+    { id: 17, title: "Tokyo Ghoul", season: 2, rating: "8.6", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 2), genre: "Dark Fantasy, Horror", description: "After being tortured and broken, Kaneki embraces his ghoul side and joins the extremist group Aogiri Tree. As he becomes stronger and more ruthless, he distances himself from his human friends to protect them. The war between ghouls and humans intensifies, with Kaneki caught in the middle trying to find his place in a world that rejects half-breeds. This season delves deeper into ghoul culture, introduces powerful new characters, and explores the psychological toll of Kaneki's transformation as he loses touch with his humanity.", episodes: 12, year: 2015, studio: "Studio Pierrot", status: "Completed" },
+    { id: 18, title: "Tokyo Ghoul", season: 3, rating: "8.0", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 3), genre: "Dark Fantasy, Horror", description: "Two years after the Anteiku raid, CCG investigator Haise Sasaki leads the Quinx Squad, enhanced humans with ghoul powers. Haise has no memory of his past life as Ken Kaneki, living peacefully as a mentor to young investigators. But when he encounters figures from his forgotten past, mysterious memories begin surfacing. This season follows a new perspective as Haise struggles with his dual identity while the CCG faces a mysterious ghoul organization called the Clowns. Political intrigue and conspiracy deepen as the line between ghouls and humans continues to blur.", episodes: 12, year: 2018, studio: "Studio Pierrot", status: "Completed" },
+    { id: 19, title: "Tokyo Ghoul", season: 4, rating: "8.5", image: "👹", thumbnail: getThumbnail("Tokyo Ghoul", 4), genre: "Dark Fantasy, Horror", description: "The final season brings the epic conflict between ghouls and humans to its explosive conclusion. Kaneki, now fully embracing both sides of his nature, becomes the One-Eyed King and leads ghouls toward a future of coexistence with humans. However, dark forces within the CCG and among extremist ghouls threaten this fragile hope. Epic battles, tragic sacrifices, and long-awaited revelations drive toward a climax that will determine the fate of both species. This season delivers emotional closure while exploring themes of discrimination, acceptance, and whether peace between enemy races is truly possible.", episodes: 12, year: 2018, studio: "Studio Pierrot", status: "Completed" },
 
     // Jujutsu Kaisen Series
-    { id: 20, title: "Jujutsu Kaisen", season: 1, rating: "8.7", image: "🔥", thumbnail: getThumbnail("Jujutsu Kaisen", 1), genre: "Action, Supernatural", description: "A high schooler joins a secret organization to fight curses.", episodes: 24 },
-    { id: 21, title: "Jujutsu Kaisen", season: 2, rating: "9.0", image: "🔥", thumbnail: getThumbnail("Jujutsu Kaisen", 2), genre: "Action, Supernatural", description: "The Shibuya Incident Arc delivers intense battles and shocking revelations.", episodes: 23 },
+    { id: 20, title: "Jujutsu Kaisen", season: 1, rating: "8.7", image: "🔥", thumbnail: getThumbnail("Jujutsu Kaisen", 1), genre: "Action, Supernatural", description: "High schooler Yuji Itadori's life changes when he eats a cursed object - a finger belonging to the King of Curses, Ryomen Sukuna - to save his friends from cursed spirits. Now hosting the most powerful curse in history, Yuji is recruited by Tokyo Jujutsu High to collect Sukuna's remaining fingers before being executed. Under the enigmatic Satoru Gojo's guidance, Yuji learns to fight curses while navigating friendships with the stoic Megumi Fushiguro and badass Nobara Kugisaki. MAPPA's stunning animation brings intense battles, dark humor, and emotional depth to this modern shonen masterpiece that revitalized the genre.", episodes: 24, year: 2020, studio: "MAPPA", status: "Completed" },
+    { id: 21, title: "Jujutsu Kaisen", season: 2, rating: "9.0", image: "🔥", thumbnail: getThumbnail("Jujutsu Kaisen", 2), genre: "Action, Supernatural", description: "Beginning with the Hidden Inventory arc, we witness Gojo and Geto's past as students, revealing how the strongest sorcerer was forged and how friendship turned to tragedy. Then comes the Shibuya Incident - a coordinated curse attack on Halloween night that becomes the most devastating battle in jujutsu history. With Gojo sealed, curses and curse users unleash chaos while sorcerers fight for survival. This season delivers non-stop intense action, major character deaths, game-changing revelations, and animation that sets a new standard. The stakes have never been higher as jujutsu society crumbles and villains execute their master plan.", episodes: 23, year: 2023, studio: "MAPPA", status: "Completed" },
 
     // One Piece Arcs (represented as seasons)
-    { id: 22, title: "One Piece", season: 1, rating: "8.9", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 1), genre: "Adventure, Comedy", description: "East Blue Saga - Luffy begins his journey to become King of the Pirates.", episodes: 61 },
-    { id: 23, title: "One Piece", season: 2, rating: "9.0", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 2), genre: "Adventure, Comedy", description: "Alabasta Saga - The crew helps save a kingdom from civil war.", episodes: 77 },
-    { id: 24, title: "One Piece", season: 3, rating: "9.1", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 3), genre: "Adventure, Comedy", description: "Sky Island Saga - Adventure in the clouds above.", episodes: 52 },
-    { id: 25, title: "One Piece", season: 4, rating: "9.2", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 4), genre: "Adventure, Comedy", description: "Water 7 Saga - Emotional battles and crew conflicts.", episodes: 118 },
-    { id: 26, title: "One Piece", season: 5, rating: "9.3", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 5), genre: "Adventure, Comedy", description: "Thriller Bark Saga - Spooky adventures with zombies and shadows.", episodes: 48 },
-    { id: 27, title: "One Piece", season: 6, rating: "9.4", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 6), genre: "Adventure, Comedy", description: "Summit War Saga - Epic war at Marineford.", episodes: 108 },
+    { id: 22, title: "One Piece", season: 1, rating: "8.9", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 1), genre: "Adventure, Comedy", description: "East Blue Saga - Monkey D. Luffy dreams of becoming King of the Pirates after eating the Gum-Gum Devil Fruit, which gave him a rubber body. He sets sail from his small village to find the legendary treasure One Piece and assembles his crew: swordsman Zoro, navigator Nami, sharpshooter Usopp, and cook Sanji. Together, they face corrupt marines, pirate warlords, and the mysteries of the Grand Line. This epic adventure combines humor, heart, and world-building that has captivated fans for over two decades.", episodes: 61, year: 1999, studio: "Toei Animation", status: "Completed" },
+    { id: 23, title: "One Piece", season: 2, rating: "9.0", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 2), genre: "Adventure, Comedy", description: "Alabasta Saga - The Straw Hats race to save the desert kingdom of Alabasta from civil war orchestrated by the villainous Crocodile, one of the Seven Warlords of the Sea. Princess Vivi joins the crew temporarily as they battle the secret organization Baroque Works. This arc features epic battles, emotional sacrifices, and reveals the true power of Devil Fruits as Luffy faces his first Warlord. The crew's bond strengthens as they risk everything to save a nation.", episodes: 77, year: 2001, studio: "Toei Animation", status: "Completed" },
+    { id: 24, title: "One Piece", season: 3, rating: "9.1", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 3), genre: "Adventure, Comedy", description: "Sky Island Saga - The crew ventures 10,000 meters into the sky to Skypiea, a legendary island in the clouds. They discover a civilization living on clouds, face the self-proclaimed god Enel with his lightning powers, and uncover ancient history through mysterious poneglyphs. This imaginative arc explores the romance of adventure and features creative battles in a unique setting. The Going Merry gets its own touching storyline as the crew's beloved ship shows its age.", episodes: 52, year: 2003, studio: "Toei Animation", status: "Completed" },
+    { id: 25, title: "One Piece", season: 4, rating: "9.2", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 4), genre: "Adventure, Comedy", description: "Water 7 Saga - The Straw Hats arrive at the city of Water 7 to repair their damaged ship, but shocking betrayals tear the crew apart. Robin mysteriously leaves, Usopp quits the crew over disagreement about the Going Merry, and the government's elite CP9 agents reveal a massive conspiracy. This emotional arc features intense internal conflict, the heart-wrenching goodbye to the Going Merry, and introduces the incredible power-up technique Gear Second. The crew must infiltrate Enies Lobby to save Robin in some of One Piece's most memorable battles.", episodes: 118, year: 2005, studio: "Toei Animation", status: "Completed" },
+    { id: 26, title: "One Piece", season: 5, rating: "9.3", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 5), genre: "Adventure, Comedy", description: "Thriller Bark Saga - In the Florian Triangle, the crew encounters Thriller Bark, a massive ghost ship commanded by another Warlord, Gecko Moria. They face zombies, ghosts, and meet the skeletal musician Brook who becomes the newest crew member. This spooky adventure mixes horror and comedy perfectly while revealing the power of shadows. The arc ends with a legendary moment as Zoro demonstrates the true meaning of loyalty and sacrifice.", episodes: 48, year: 2007, studio: "Toei Animation", status: "Completed" },
+    { id: 27, title: "One Piece", season: 6, rating: "9.4", image: "🏴‍☠️", thumbnail: getThumbnail("One Piece", 6), genre: "Adventure, Comedy", description: "Summit War Saga - The stakes reach unprecedented heights as Luffy attempts to rescue his brother Ace from execution at Marine Headquarters. This arc features the Marineford War, the greatest battle in One Piece history, with Whitebeard's pirate fleet facing off against the Navy's full might. Shocking deaths, revelations about Luffy's family, and world-changing events make this the most intense arc yet. The world of One Piece is forever altered as the balance of power shifts and a new era of piracy begins.", episodes: 108, year: 2009, studio: "Toei Animation", status: "Completed" },
 
     // Naruto Series
-    { id: 28, title: "Naruto", season: 1, rating: "8.4", image: "🌪️", thumbnail: getThumbnail("Naruto", 1), genre: "Action, Adventure", description: "A young ninja seeks recognition and dreams of becoming Hokage.", episodes: 220 },
-    { id: 29, title: "Naruto Shippuden", season: 1, rating: "9.4", image: "🌀", thumbnail: getThumbnail("Naruto Shippuden", 1), genre: "Action, Adventure", description: "Naruto returns after training to face greater threats.", episodes: 500 },
+    { id: 28, title: "Naruto", season: 1, rating: "8.4", image: "🌪️", thumbnail: getThumbnail("Naruto", 1), genre: "Action, Adventure", description: "Naruto Uzumaki is a young ninja with a sealed demon fox inside him, making him an outcast in his village. Despite being constantly rejected and ridiculed, he dreams of becoming Hokage - the village's strongest ninja and leader - to earn everyone's recognition. Alongside rivals Sasuke and Sakura under the guidance of enigmatic sensei Kakashi, Naruto trains, takes on missions, and faces dangerous ninja from other villages. This coming-of-age story explores themes of loneliness, perseverance, and finding your ninja way while delivering epic battles and emotional character growth.", episodes: 220, year: 2002, studio: "Studio Pierrot", status: "Completed" },
+    { id: 29, title: "Naruto Shippuden", season: 1, rating: "9.4", image: "🌀", thumbnail: getThumbnail("Naruto Shippuden", 1), genre: "Action, Adventure", description: "Two and a half years after Naruto left to train with Jiraiya, he returns as a stronger ninja ready to face the criminal organization Akatsuki, who hunt tailed beasts like the one inside him. The stakes escalate as Naruto races to save his best friend Sasuke from darkness while mastering new jutsu and uncovering the secrets of the ninja world. This sequel features more mature themes, intense battles against god-like opponents, a massive ninja war, and revelations about destiny and friendship. Naruto's journey to become Hokage reaches its epic conclusion.", episodes: 500, year: 2007, studio: "Studio Pierrot", status: "Completed" },
 
     // Fullmetal Alchemist
-    { id: 30, title: "Fullmetal Alchemist: Brotherhood", season: 1, rating: "9.5", image: "⚗️", thumbnail: getThumbnail("Fullmetal Alchemist: Brotherhood", 1), genre: "Action, Fantasy", description: "Two brothers search for the Philosopher's Stone to restore their bodies.", episodes: 64 },
+    { id: 30, title: "Fullmetal Alchemist: Brotherhood", season: 1, rating: "9.5", image: "⚗️", thumbnail: getThumbnail("Fullmetal Alchemist: Brotherhood", 1), genre: "Action, Fantasy", description: "Brothers Edward and Alphonse Elric attempted human transmutation to revive their dead mother, breaking alchemy's greatest taboo. The failed experiment cost Edward his arm and leg, and Alphonse his entire body - his soul now bound to a suit of armor. They search for the legendary Philosopher's Stone to restore their bodies while uncovering a vast conspiracy threatening their nation. This adaptation follows the manga perfectly, delivering an epic story about sacrifice, redemption, and the cost of ambition with incredible world-building, complex characters, and a satisfying conclusion. Widely considered one of the greatest anime of all time.", episodes: 64, year: 2009, studio: "Bones", status: "Completed" },
 
     // Death Note
-    { id: 31, title: "Death Note", season: 1, rating: "8.9", image: "📓", thumbnail: getThumbnail("Death Note", 1), genre: "Psychological, Thriller", description: "A high school student discovers a notebook that can kill anyone.", episodes: 37 },
+    { id: 31, title: "Death Note", season: 1, rating: "8.9", image: "📓", thumbnail: getThumbnail("Death Note", 1), genre: "Psychological, Thriller", description: "Genius high school student Light Yagami finds a supernatural notebook that kills anyone whose name is written in it. Believing he can cleanse the world of evil, Light becomes the vigilante 'Kira,' executing criminals while evading the mysterious detective L who's determined to expose him. This psychological cat-and-mouse game features mind games, moral philosophy, and strategic battles of wit between two geniuses. Death Note explores the corruption of power and whether one person can judge who deserves to live or die. The intense psychological warfare and shocking plot twists make every episode gripping.", episodes: 37, year: 2006, studio: "Madhouse", status: "Completed" },
 
     // Steins;Gate
-    { id: 32, title: "Steins;Gate", season: 1, rating: "9.1", image: "⏰", thumbnail: getThumbnail("Steins;Gate", 1), genre: "Sci-Fi, Thriller", description: "A group of friends accidentally discover time travel.", episodes: 24 },
-    { id: 33, title: "Steins;Gate 0", season: 1, rating: "8.5", image: "⏰", thumbnail: getThumbnail("Steins;Gate 0", 1), genre: "Sci-Fi, Thriller", description: "An alternate timeline where Okabe failed to save Kurisu.", episodes: 23 },
+    { id: 32, title: "Steins;Gate", season: 1, rating: "9.1", image: "⏰", thumbnail: getThumbnail("Steins;Gate", 1), genre: "Sci-Fi, Thriller", description: "Self-proclaimed mad scientist Okabe Rintarou and his friends accidentally discover they can send text messages to the past using a modified microwave. What starts as experimentation becomes desperate as Okabe realizes that changing the past creates divergent timelines, and a dystopian future organization hunts them. When tragedy strikes, Okabe must time-leap repeatedly to save his friends, experiencing trauma and loss across countless timelines. This masterpiece combines sci-fi concepts with emotional storytelling, building slowly before delivering an intense, heart-wrenching second half that explores sacrifice, choice, and the butterfly effect.", episodes: 24, year: 2011, studio: "White Fox", status: "Completed" },
+    { id: 33, title: "Steins;Gate 0", season: 1, rating: "8.5", image: "⏰", thumbnail: getThumbnail("Steins;Gate 0", 1), genre: "Sci-Fi, Thriller", description: "An alternate timeline where Okabe failed to save Kurisu and gave up on time travel, living in regret and PTSD. As he tries to move on, new threats emerge and he's forced back into the conspiracy surrounding time travel and World War III. This midquel explores Okabe's darkest timeline, showing his struggle with trauma and the path to becoming the person who would eventually save everything. Steins;Gate 0 is essential viewing that deepens the original story's impact while delivering its own emotional journey.", episodes: 23, year: 2018, studio: "White Fox", status: "Completed" },
 
     // Hunter x Hunter
-    { id: 34, title: "Hunter x Hunter", season: 1, rating: "9.2", image: "🎣", thumbnail: getThumbnail("Hunter x Hunter", 1), genre: "Action, Adventure", description: "A young boy searches for his father while becoming a Hunter.", episodes: 148 },
+    { id: 34, title: "Hunter x Hunter", season: 1, rating: "9.2", image: "🎣", thumbnail: getThumbnail("Hunter x Hunter", 1), genre: "Action, Adventure", description: "12-year-old Gon Freecss becomes a Hunter to find his father Ging, who abandoned him to pursue his own Hunter career. Along the way, Gon befriends the revenge-driven Kurapika, doctor-aspirant Leorio, and ex-assassin Killua. They face deadly exams, learn Nen abilities, and encounter dangerous criminals and creatures. This adventure epic features incredible power systems, strategic battles, dark arcs like the Chimera Ant invasion, and complex moral questions. The series constantly evolves and subverts shonen tropes while maintaining perfect character development and world-building throughout its 148 episodes.", episodes: 148, year: 2011, studio: "Madhouse", status: "Completed" },
 
     // Sword Art Online Series
-    { id: 35, title: "Sword Art Online", season: 1, rating: "7.8", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 1), genre: "Action, Fantasy", description: "Players trapped in a virtual reality MMORPG must clear the game to escape.", episodes: 25 },
-    { id: 36, title: "Sword Art Online", season: 2, rating: "7.5", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 2), genre: "Action, Fantasy", description: "New virtual worlds and challenges await Kirito and his friends.", episodes: 24 },
-    { id: 37, title: "Sword Art Online", season: 3, rating: "8.0", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 3), genre: "Action, Fantasy", description: "Alicization Arc - Kirito enters a new virtual world with advanced AI.", episodes: 47 },
-    { id: 38, title: "Sword Art Online", season: 4, rating: "7.9", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 4), genre: "Action, Fantasy", description: "War of Underworld - The epic conclusion to the Alicization saga.", episodes: 23 },
+    { id: 35, title: "Sword Art Online", season: 1, rating: "7.8", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 1), genre: "Action, Fantasy", description: "In 2022, players log into Sword Art Online, a revolutionary VRMMORPG, only to discover they're trapped - dying in the game means death in real life. Protagonist Kirito must reach the 100th floor to free everyone while forming relationships and facing moral dilemmas in a virtual world that's become all too real. This pioneering isekai explores virtual reality, romance with Asuna, and what makes life worth living. The Aincrad arc delivers emotional stakes and popularized the trapped-in-a-game genre despite its flaws.", episodes: 25, year: 2012, studio: "A-1 Pictures", status: "Completed" },
+    { id: 36, title: "Sword Art Online", season: 2, rating: "7.5", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 2), genre: "Action, Fantasy", description: "Kirito dives into Gun Gale Online, a gun-based MMO, to investigate mysterious deaths connected to the game. Then he returns to ALfheim Online where a new VRMMO called Ordinal Scale threatens to expose dark secrets from SAO. This season explores PTSD from the death game, Kirito and Asuna's relationship beyond SAO, and introduces Sinon, a sniper dealing with her own trauma. Multiple story arcs provide variety while expanding the VR world.", episodes: 24, year: 2014, studio: "A-1 Pictures", status: "Completed" },
+    { id: 37, title: "Sword Art Online", season: 3, rating: "8.0", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 3), genre: "Action, Fantasy", description: "Alicization Arc - Kirito wakes in Underworld, a virtual world with incredibly advanced AI that possess genuine souls. He befriends Eugeo as they climb the ranks of society to rescue Alice, now an Integrity Knight. This arc reinvents SAO with deeper world-building, moral complexity about AI rights, and character development for Kirito. The fluctlight technology and simulation create a more philosophical story about consciousness and what defines humanity.", episodes: 47, year: 2018, studio: "A-1 Pictures", status: "Completed" },
+    { id: 38, title: "Sword Art Online", season: 4, rating: "7.9", image: "⚔️", thumbnail: getThumbnail("Sword Art Online", 4), genre: "Action, Fantasy", description: "War of Underworld - The Underworld simulation is invaded by foreign players and dark forces seeking to destroy it. Kirito, trapped in a comatose state, can only watch as Asuna, Alice, and his friends wage war to protect the Underworld's inhabitants. This epic conclusion features massive battles, sacrifice, and explores whether AI deserve the same rights as humans. The final arc brings back beloved characters and delivers an emotionally satisfying ending to the Alicization saga.", episodes: 23, year: 2020, studio: "A-1 Pictures", status: "Completed" },
 
     // Code Geass
-    { id: 39, title: "Code Geass", season: 1, rating: "8.9", image: "👁️", thumbnail: getThumbnail("Code Geass", 1), genre: "Mecha, Thriller", description: "A prince gains the power to control minds and leads a rebellion.", episodes: 25 },
-    { id: 40, title: "Code Geass", season: 2, rating: "9.0", image: "👁️", thumbnail: getThumbnail("Code Geass", 2), genre: "Mecha, Thriller", description: "Lelouch continues his quest to create a better world.", episodes: 25 },
+    { id: 39, title: "Code Geass", season: 1, rating: "8.9", image: "👁️", thumbnail: getThumbnail("Code Geass", 1), genre: "Mecha, Thriller", description: "In an alternate timeline where the Holy Britannian Empire conquered Japan, exiled prince Lelouch vi Britannia gains the power of Geass - the ability to command anyone to obey him absolutely. Using this power and his tactical genius, Lelouch becomes the masked revolutionary Zero, leading a rebellion against Britannia to avenge his mother and create a world where his disabled sister can live happily. This thrilling mecha series combines strategic battles, political intrigue, and moral complexity as Lelouch's quest for justice slowly corrupts him.", episodes: 25, year: 2006, studio: "Sunrise", status: "Completed" },
+    { id: 40, title: "Code Geass", season: 2, rating: "9.0", image: "👁️", thumbnail: getThumbnail("Code Geass", 2), genre: "Mecha, Thriller", description: "R2 - Lelouch's memories are altered and he lives as a student again, but the return of C.C. restores his identity as Zero. The rebellion intensifies into a global conflict as Lelouch makes increasingly ruthless decisions to achieve his vision of a better world. Personal relationships fracture, shocking betrayals occur, and the line between hero and villain blurs completely. This legendary conclusion features masterful plot twists, epic mech battles, and one of anime's most controversial yet perfectly executed endings that will leave you powerless to look away.", episodes: 25, year: 2008, studio: "Sunrise", status: "Completed" },
 
     // Cowboy Bebop
-    { id: 41, title: "Cowboy Bebop", season: 1, rating: "9.0", image: "🚀", thumbnail: getThumbnail("Cowboy Bebop", 1), genre: "Sci-Fi, Action", description: "Bounty hunters travel through space in this jazz-filled adventure.", episodes: 26 },
+    { id: 41, title: "Cowboy Bebop", season: 1, rating: "9.0", image: "🚀", thumbnail: getThumbnail("Cowboy Bebop", 1), genre: "Sci-Fi, Action", description: "In 2071, bounty hunter Spike Spiegel and his ragtag crew aboard the spaceship Bebop chase criminals across the solar system. Each member carries a painful past they're running from: Jet's betrayal, Faye's amnesia, Ed's abandonment. Set to an incredible jazz soundtrack, this episodic masterpiece blends film noir, westerns, and kung fu into a stylish space western. Philosophical themes about the past, loneliness, and whether we can ever truly escape our history culminate in an unforgettable ending. A timeless classic that influenced countless anime.", episodes: 26, year: 1998, studio: "Sunrise", status: "Completed" },
 
     // Mob Psycho 100
-    { id: 42, title: "Mob Psycho 100", season: 1, rating: "8.6", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 1), genre: "Action, Comedy", description: "A powerful psychic tries to live a normal life.", episodes: 12 },
-    { id: 43, title: "Mob Psycho 100", season: 2, rating: "8.9", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 2), genre: "Action, Comedy", description: "Mob faces greater challenges and emotional growth.", episodes: 13 },
-    { id: 44, title: "Mob Psycho 100", season: 3, rating: "9.0", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 3), genre: "Action, Comedy", description: "The final season concludes Mob's journey.", episodes: 12 },
+    { id: 42, title: "Mob Psycho 100", season: 1, rating: "8.6", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 1), genre: "Action, Comedy", description: "Shigeo 'Mob' Kageyama is an incredibly powerful esper who just wants to live normally, improve himself physically, and confess to his crush. Working under con-artist 'spirit medium' Reigen, Mob exorcises evil spirits while suppressing his emotions to control his power. But when his emotions reach 100%, his power explodes spectacularly. From ONE (One Punch Man's creator), this anime features Studio Bones' wildest animation, heartfelt coming-of-age themes, and surprisingly deep messages about self-improvement and kindness over power.", episodes: 12, year: 2016, studio: "Bones", status: "Completed" },
+    { id: 43, title: "Mob Psycho 100", season: 2, rating: "8.9", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 2), genre: "Action, Comedy", description: "Mob's powers grow as he faces world-threatening espers and a shadowy organization. His mentor Reigen faces his own reckoning when Mob starts questioning their relationship. This season deepens character development, delivers even more spectacular animation, and explores what truly makes someone special. The emotional climax of Mob's character arc tackles self-acceptance and the importance of connections over raw power. Every episode is visually stunning and emotionally resonant.", episodes: 13, year: 2019, studio: "Bones", status: "Completed" },
+    { id: 44, title: "Mob Psycho 100", season: 3, rating: "9.0", image: "👻", thumbnail: getThumbnail("Mob Psycho 100", 3), genre: "Action, Comedy", description: "The final season brings Mob's journey to its conclusion as he confronts his most dangerous enemy yet while navigating normal teenage problems like confessing to Tsubomi. Broccoli arc, confession preparations, and a climactic battle test everything Mob has learned about power, kindness, and growth. Studio Bones delivers their most ambitious animation for an emotionally perfect ending that stays true to the series' themes. A masterful conclusion to one of anime's most heartfelt action comedies.", episodes: 12, year: 2022, studio: "Bones", status: "Completed" },
 
     // One Punch Man
-    { id: 45, title: "One Punch Man", season: 1, rating: "8.8", image: "👊", thumbnail: getThumbnail("One Punch Man", 1), genre: "Action, Comedy", description: "A hero who can defeat any enemy with a single punch seeks a worthy opponent.", episodes: 12 },
-    { id: 46, title: "One Punch Man", season: 2, rating: "7.9", image: "👊", thumbnail: getThumbnail("One Punch Man", 2), genre: "Action, Comedy", description: "Saitama faces new monsters and joins the Hero Association.", episodes: 12 },
+    { id: 45, title: "One Punch Man", season: 1, rating: "8.8", image: "👊", thumbnail: getThumbnail("One Punch Man", 1), genre: "Action, Comedy", description: "Saitama trained so hard he became too strong - he can defeat any enemy with a single punch. Now bored and unfulfilled, he searches for a worthy opponent while dealing with the Hero Association bureaucracy. This brilliant parody deconstructs superhero tropes while delivering spectacular action. Madhouse's animation is phenomenal, especially the Boros fight. Saitama's deadpan reactions to world-ending threats provide endless comedy while exploring what happens when you achieve your dream and find it hollow.", episodes: 12, year: 2015, studio: "Madhouse", status: "Completed" },
+    { id: 46, title: "One Punch Man", season: 2, rating: "7.9", image: "👊", thumbnail: getThumbnail("One Punch Man", 2), genre: "Action, Comedy", description: "Saitama enters a martial arts tournament while the Hero Association faces the Monster Association's growing threat. Garou, the Hero Hunter, emerges as a complex antagonist who challenges the meaning of heroism. Though the animation quality dropped from season 1, the story deepens with more character development for side heroes like Fubuki and King. The season explores gray morality - are heroes truly just and monsters truly evil?", episodes: 12, year: 2019, studio: "J.C.Staff", status: "Completed" },
 
     // Bleach Series
-    { id: 47, title: "Bleach", season: 1, rating: "8.2", image: "⚔️", thumbnail: getThumbnail("Bleach", 1), genre: "Action, Supernatural", description: "A teenager gains the powers of a Soul Reaper.", episodes: 366 },
-    { id: 48, title: "Bleach: Thousand-Year Blood War", season: 1, rating: "9.0", image: "⚔️", thumbnail: getThumbnail("Bleach: Thousand-Year Blood War", 1), genre: "Action, Supernatural", description: "The final arc adapts the manga's epic conclusion.", episodes: 13 },
+    { id: 47, title: "Bleach", season: 1, rating: "8.2", image: "⚔️", thumbnail: getThumbnail("Bleach", 1), genre: "Action, Supernatural", description: "15-year-old Ichigo Kurosaki can see ghosts, but his life changes when he accidentally absorbs the powers of Soul Reaper Rukia Kuchiki during a Hollow attack. Now responsible for protecting the living from evil spirits and guiding souls to the afterlife, Ichigo battles increasingly powerful enemies while uncovering the conspiracy within the Soul Society. This long-running shonen features epic sword battles, a unique power system with zanpakuto spirit weapons, and the iconic Getsuga Tenshou. Though padded with filler, the main arcs deliver memorable fights and character moments.", episodes: 366, year: 2004, studio: "Studio Pierrot", status: "Completed" },
+    { id: 48, title: "Bleach: Thousand-Year Blood War", season: 1, rating: "9.0", image: "⚔️", thumbnail: getThumbnail("Bleach: Thousand-Year Blood War", 1), genre: "Action, Supernatural", description: "After years of waiting, Bleach returns to adapt its final manga arc. The Quincy emperor Yhwach and his Wandenreich army declare war on the Soul Society in revenge for their race's near-extinction. Ichigo must discover the truth about his heritage and unlock his full potential to face god-like enemies. Studio Pierrot delivers movie-quality animation, bringing Tite Kubo's art to life with spectacular battles and long-awaited transformations. This epic conclusion features shocking revelations, devastating losses, and Bleach at its absolute peak.", episodes: 13, year: 2022, studio: "Studio Pierrot", status: "Ongoing" },
 
     // Dragon Ball Series
-    { id: 49, title: "Dragon Ball Z", season: 1, rating: "8.7", image: "🐉", thumbnail: getThumbnail("Dragon Ball Z", 1), genre: "Action, Adventure", description: "Goku and friends defend Earth from powerful enemies.", episodes: 291 },
-    { id: 50, title: "Dragon Ball Super", season: 1, rating: "8.3", image: "🐉", thumbnail: getThumbnail("Dragon Ball Super", 1), genre: "Action, Adventure", description: "New adventures with gods and universes at stake.", episodes: 131 },
+    { id: 49, title: "Dragon Ball Z", season: 1, rating: "8.7", image: "🐉", thumbnail: getThumbnail("Dragon Ball Z", 1), genre: "Action, Adventure", description: "Goku discovers he's actually a Saiyan alien sent to conquer Earth as a baby. Now he and the Z Fighters must defend Earth from increasingly powerful threats: the ruthless Saiyan warriors, the galactic tyrant Frieza, the bio-android Cell, and the chaos of Majin Buu. Each saga raises the power scale exponentially with iconic transformations like Super Saiyan. DBZ defined shonen anime with ki blasts, multi-episode battles, and the spirit of never giving up. Its influence on anime and pop culture cannot be overstated. A legendary series that still excites fans three decades later.", episodes: 291, year: 1989, studio: "Toei Animation", status: "Completed" },
+    { id: 50, title: "Dragon Ball Super", season: 1, rating: "8.3", image: "🐉", thumbnail: getThumbnail("Dragon Ball Super", 1), genre: "Action, Adventure", description: "After defeating Majin Buu, Goku faces deities and discovers multiple universes exist, each with their own powerful warriors. New transformation forms like Super Saiyan Blue and Ultra Instinct push Goku beyond his limits. The Tournament of Power arc pits Universe 7's best fighters against other universes in a battle royale where losing universes are erased. While controversial for its early animation quality, Super delivers fan-favorite moments, expands Dragon Ball lore massively, and introduces Beerus, Whis, and Jiren as instant classics.", episodes: 131, year: 2015, studio: "Toei Animation", status: "Completed" },
 
     // Vinland Saga
-    { id: 51, title: "Vinland Saga", season: 1, rating: "8.9", image: "⚔️", thumbnail: getThumbnail("Vinland Saga", 1), genre: "Action, Historical", description: "A young Viking seeks revenge in medieval Europe.", episodes: 24 },
-    { id: 52, title: "Vinland Saga", season: 2, rating: "9.1", image: "⚔️", thumbnail: getThumbnail("Vinland Saga", 2), genre: "Action, Historical", description: "A tale of redemption and finding true purpose.", episodes: 24 },
+    { id: 51, title: "Vinland Saga", season: 1, rating: "8.9", image: "⚔️", thumbnail: getThumbnail("Vinland Saga", 1), genre: "Action, Historical", description: "Young Thorfinn follows the mercenary band that killed his father, waiting years for the chance to duel their leader Askeladd in honorable combat. Set in Viking-era Europe, this brutal historical epic features realistic medieval warfare, political intrigue, and the cycle of revenge. Wit Studio's animation makes every battle visceral and impactful. Beneath the violence lies a profound story about the cost of hatred and whether true warriors need swords. The revenge narrative subverts expectations, building to a tragic, powerful climax.", episodes: 24, year: 2019, studio: "Wit Studio", status: "Completed" },
+    { id: 52, title: "Vinland Saga", season: 2, rating: "9.1", image: "⚔️", thumbnail: getThumbnail("Vinland Saga", 2), genre: "Action, Historical", description: "The Farmland Saga - Thorfinn, broken after achieving his revenge, works as a slave on a farm, seeking redemption for the lives he took. This slower, introspective season explores pacifism, what makes a true warrior, and whether it's possible to atone for violence. The contrast with season 1 is intentional and brilliant. MAPPA takes over with equally stunning animation for a different kind of epic - the battle to reclaim one's humanity and build rather than destroy. One of anime's most mature character arcs.", episodes: 24, year: 2023, studio: "MAPPA", status: "Completed" },
 
     // Re:Zero Series
-    { id: 53, title: "Re:Zero", season: 1, rating: "8.4", image: "🔄", thumbnail: getThumbnail("Re:Zero", 1), genre: "Fantasy, Thriller", description: "A boy is transported to a fantasy world with the power to return from death.", episodes: 25 },
-    { id: 54, title: "Re:Zero", season: 2, rating: "8.6", image: "🔄", thumbnail: getThumbnail("Re:Zero", 2), genre: "Fantasy, Thriller", description: "Subaru faces new trials and uncovers dark secrets.", episodes: 25 },
+    { id: 53, title: "Re:Zero", season: 1, rating: "8.4", image: "🔄", thumbnail: getThumbnail("Re:Zero", 1), genre: "Fantasy, Thriller", description: "Subaru Natsuki is transported to a fantasy world with only one ability - when he dies, time resets to a checkpoint. Each death is permanent and agonizing, forcing Subaru to watch friends die repeatedly as he tries to find the path that saves everyone. This dark isekai deconstructs the power fantasy genre with psychological horror, showing the trauma of experiencing death and failure countless times. Subaru isn't overpowered; he's just stubborn enough to keep trying. The narrative loops create intense mystery and dread alongside genuine character growth.", episodes: 25, year: 2016, studio: "White Fox", status: "Completed" },
+    { id: 54, title: "Re:Zero", season: 2, rating: "8.6", image: "🔄", thumbnail: getThumbnail("Re:Zero", 2), genre: "Fantasy, Thriller", description: "Subaru faces the Sanctuary's trials while uncovering Emilia's past and the truth about the Witch of Envy. Multiple timelines converge as Subaru confronts even more horrific deaths and impossible choices. The season delves deeper into the supporting cast, giving Emilia, Rem, and others their moments while raising the emotional and psychological stakes. Return by Death becomes both blessing and curse as Subaru struggles with the weight of knowledge from failed loops. White Fox delivers spectacular adaptation with increased runtime for key episodes.", episodes: 25, year: 2020, studio: "White Fox", status: "Completed" },
 
     // The Promised Neverland
-    { id: 55, title: "The Promised Neverland", season: 1, rating: "8.6", image: "🏠", thumbnail: getThumbnail("The Promised Neverland", 1), genre: "Mystery, Thriller", description: "Orphans discover a dark secret about their home.", episodes: 12 },
-    { id: 56, title: "The Promised Neverland", season: 2, rating: "7.8", image: "🏠", thumbnail: getThumbnail("The Promised Neverland", 2), genre: "Mystery, Thriller", description: "The children escape and face the dangers of the outside world.", episodes: 11 },
+    { id: 55, title: "The Promised Neverland", season: 1, rating: "8.6", image: "🏠", thumbnail: getThumbnail("The Promised Neverland", 1), genre: "Mystery, Thriller", description: "Emma, Norman, and Ray live happily in an orphanage until they discover a horrifying truth - they're being raised as food for demons. The 'orphanage' is actually a farm, and their 'mother' is the warden ensuring premium quality children. These genius kids must plan an elaborate escape while hiding their knowledge from their captor. This psychological thriller features incredible mind games, strategic planning, and the fight for freedom. CloverWorks' direction creates constant tension and dread. A masterful first season that keeps you on edge.", episodes: 12, year: 2019, studio: "CloverWorks", status: "Completed" },
+    { id: 56, title: "The Promised Neverland", season: 2, rating: "7.8", image: "🏠", thumbnail: getThumbnail("The Promised Neverland", 2), genre: "Mystery, Thriller", description: "After escaping Grace Field, the children navigate the dangerous demon world seeking the legendary William Minerva who can help them reach the human world. This season faced criticism for skipping major manga arcs and rushing to an anime-original conclusion. While the emotional core of protecting the children remains, the strategic battles and mind games that made season one special are less present. Despite its flaws, it provides closure to the story and the kids' journey to freedom, though manga readers were disappointed.", episodes: 11, year: 2021, studio: "CloverWorks", status: "Completed" },
 
     // Solo Leveling
     { id: 57, title: "Solo Leveling", season: 1, rating: "8.9", image: "⚔️", thumbnail: getThumbnail("Solo Leveling", 1), genre: "Action, Fantasy", description: "In a world where hunters fight monsters from gates, Sung Jinwoo is the weakest E-rank hunter. After a near-death experience in a double dungeon, he gains a unique ability to level up infinitely like a video game character. Watch as the weakest hunter becomes the strongest through intense battles, strategic thinking, and jaw-dropping power-ups. This adaptation of the popular manhwa features stunning animation and an addictive progression system that will keep you hooked.", episodes: 12, year: 2024, studio: "A-1 Pictures", status: "Completed" },

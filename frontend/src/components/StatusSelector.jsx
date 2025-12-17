@@ -14,6 +14,7 @@ function StatusSelector({ animeId, totalEpisodes = 0, className = '' }) {
     const [currentStatus, setCurrentStatus] = useState(null);
     const [currentEpisode, setCurrentEpisode] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
+    const [dropdownDirection, setDropdownDirection] = useState('down'); // 'up' or 'down'
     const dropdownRef = useRef(null);
 
     // Load status and episode from local storage on mount
@@ -36,6 +37,26 @@ function StatusSelector({ animeId, totalEpisodes = 0, className = '' }) {
         if (isOpen) {
             document.addEventListener('mousedown', handleClickOutside);
             return () => document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [isOpen]);
+
+    // Calculate dropdown direction based on available space
+    useEffect(() => {
+        if (isOpen && dropdownRef.current) {
+            const rect = dropdownRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const spaceAbove = rect.top;
+
+            // Estimate dropdown height (approximately 300px for 6 options)
+            const dropdownHeight = 300;
+
+            // If not enough space below but enough space above, open upward
+            if (spaceBelow < dropdownHeight && spaceAbove > dropdownHeight) {
+                setDropdownDirection('up');
+            } else {
+                setDropdownDirection('down');
+            }
         }
     }, [isOpen]);
 
@@ -73,7 +94,7 @@ function StatusSelector({ animeId, totalEpisodes = 0, className = '' }) {
     const statusData = getCurrentStatusData();
 
     return (
-        <div className={`relative ${className}`} ref={dropdownRef}>
+        <div className={`relative z-[10000] ${className}`} ref={dropdownRef}>
             {/* Main Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -90,7 +111,7 @@ function StatusSelector({ animeId, totalEpisodes = 0, className = '' }) {
             {/* Episode Progress (shown when status is set) */}
             {currentStatus && totalEpisodes > 0 && (
                 <div className="mt-3 bg-[#1a1a3e] border border-[#ff4d4d]/30 rounded-xl p-4">
-                    <div className="flex items-center justify-end mb-2">
+                    <div className="flex items-center justify-center mb-2">
                         <span className="text-[#ff8888] text-sm font-bold">{currentEpisode} / {totalEpisodes}</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -129,7 +150,10 @@ function StatusSelector({ animeId, totalEpisodes = 0, className = '' }) {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-[#1a1a3e] border border-[#ff4d4d]/30 rounded-2xl shadow-lg shadow-[#ff4d4d]/20 overflow-hidden z-50 animate-fadeIn">
+                <div className={`absolute left-0 right-0 bg-[#1a1a3e] border border-[#ff4d4d]/30 rounded-2xl shadow-lg shadow-[#ff4d4d]/20 overflow-hidden z-[9999] animate-fadeIn ${dropdownDirection === 'up'
+                    ? 'bottom-full mb-2'
+                    : 'top-full mt-2'
+                    }`}>
                     {STATUS_OPTIONS.map((option) => (
                         <button
                             key={option.value}

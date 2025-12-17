@@ -41,7 +41,7 @@ function AnimeDetailPage() {
                     </Link>
                     <button
                         onClick={() => navigate(-1)}
-                        className="text-gray-300 hover:text-[#ff4d4d] transition-colors flex items-center gap-2"
+                        className="border border-[#ff4d4d]/50 text-[#ff4d4d] px-4 py-2 rounded-lg hover:bg-[#ff4d4d]/10 transition-all whitespace-nowrap flex items-center gap-2"
                     >
                         <span>←</span> Back
                     </button>
@@ -102,42 +102,15 @@ function AnimeDetailPage() {
                                 {anime.description}
                             </p>
 
-                            <div className="flex gap-4 flex-wrap">
+                            <div className="flex gap-4 flex-wrap relative">
                                 <StatusSelector animeId={anime.id} totalEpisodes={anime.episodes} className="flex-1 min-w-[200px]" />
-                                <button className="px-8 py-4 rounded-lg font-bold uppercase tracking-wider bg-white/5 text-[#ff4d4d] border border-[#ff4d4d]/30 hover:bg-[#ff4d4d]/10 hover:border-[#ff4d4d]/60 transition-all">
+                                <button className="px-8 py-4 rounded-lg font-bold uppercase tracking-wider bg-white/5 text-[#ff4d4d] border border-[#ff4d4d]/30 hover:bg-[#ff4d4d]/10 hover:border-[#ff4d4d]/60 transition-all whitespace-nowrap">
                                     + Add to List
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* User Reviews Section */}
-                {anime.reviews && anime.reviews.length > 0 && (
-                    <div className="mb-10">
-                        <h2 className="text-3xl font-black mb-6 text-[#ff4d4d] drop-shadow-lg">
-                            💬 User Reviews ({anime.reviews.length})
-                        </h2>
-                        <div className="grid grid-cols-1 gap-6">
-                            {anime.reviews.map((review, index) => (
-                                <div key={index} className="bg-white/5 backdrop-blur-md border border-[#ff4d4d]/15 rounded-2xl p-6 hover:border-[#ff4d4d]/40 transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div>
-                                            <h3 className="font-bold text-lg text-[#ff8888]">{review.user}</h3>
-                                            <p className="text-gray-400 text-sm">{new Date(review.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                        </div>
-                                        <div className="flex items-center gap-2 bg-[#ff4d4d]/20 px-4 py-2 rounded-lg border border-[#ff4d4d]/30">
-                                            <span className="text-2xl">⭐</span>
-                                            <span className="text-2xl font-bold text-[#ff4d4d]">{review.rating}</span>
-                                            <span className="text-gray-400">/10</span>
-                                        </div>
-                                    </div>
-                                    <p className="text-gray-300 leading-relaxed">{review.comment}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
 
                 {/* Related Seasons */}
                 {relatedSeasons.length > 0 && (
@@ -173,7 +146,7 @@ function AnimeDetailPage() {
                 )}
 
                 {/* Additional Info */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     <div className="bg-white/5 backdrop-blur-md border border-[#ff4d4d]/15 rounded-2xl p-8 text-center hover:border-[#ff4d4d]/40 hover:shadow-lg hover:shadow-[#ff4d4d]/20 transition-all">
                         <div className="text-4xl mb-3">📺</div>
                         <div className="text-2xl font-bold text-[#ff4d4d] mb-2">{anime.episodes}</div>
@@ -190,6 +163,33 @@ function AnimeDetailPage() {
                         <div className="text-gray-400">User Rating</div>
                     </div>
                 </div>
+
+                {/* User Reviews Section */}
+                {anime.reviews && anime.reviews.length > 0 && (
+                    <div className="mb-10">
+                        <h2 className="text-3xl font-black mb-6 text-[#ff4d4d] drop-shadow-lg">
+                            💬 User Reviews ({anime.reviews.length})
+                        </h2>
+                        <div className="grid grid-cols-1 gap-6">
+                            {anime.reviews.map((review, index) => (
+                                <div key={index} className="bg-white/5 backdrop-blur-md border border-[#ff4d4d]/15 rounded-2xl p-6 hover:border-[#ff4d4d]/40 transition-all">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 className="font-bold text-lg text-[#ff8888]">{review.user}</h3>
+                                            <p className="text-gray-400 text-sm">{new Date(review.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                        </div>
+                                        <div className="flex items-center gap-2 bg-[#ff4d4d]/20 px-4 py-2 rounded-lg border border-[#ff4d4d]/30">
+                                            <span className="text-2xl">⭐</span>
+                                            <span className="text-2xl font-bold text-[#ff4d4d]">{review.rating}</span>
+                                            <span className="text-gray-400">/10</span>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-300 leading-relaxed">{review.comment}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Footer */}
