@@ -54,8 +54,8 @@ It includes user authentication, dynamic anime listings, reviews, and user statu
 ### Signup Page
 ![Signup](screenshots/signup.png)
 
-### Homepage
-![Home page](screenshots/homepage.png)
+### Home page
+![Homepage](screenshots/homepage.png)
 
 ### Anime List
 ![Anime List](screenshots/animelist.png)
